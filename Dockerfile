@@ -7,6 +7,8 @@ WORKDIR /src
 
 RUN curl -O http://s3.amazonaws.com/influxdb/influxdb_latest_amd64.deb
 RUN dpkg -i influxdb_latest_amd64.deb
+EXPOSE 8083
+EXPOSE 8086
 
 RUN git clone https://github.com/armon/statsite.git
 WORKDIR /src/statsite
