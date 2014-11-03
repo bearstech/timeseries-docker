@@ -21,13 +21,13 @@ function (Settings) {
     datasources: {
       influxdb: {
         type: 'influxdb',
-        url: "http://my_influxdb_server:8086/db/timeseries",
+        url: "http://" + document.location.host + "/db/timeseries",
         username: 'admin',
         password: 'admin',
       },
       grafana: {
         type: 'influxdb',
-        url: "http://my_influxdb_server:8086/db/grafana",
+        url: "http://" + document.location.host + "/db/grafana",
         username: 'admin',
         password: 'admin',
         grafanaDB: true
