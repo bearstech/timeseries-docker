@@ -1,4 +1,5 @@
 FROM debian:wheezy
+MAINTAINER mlecarme@bearstech.com
 
 RUN apt-get -q update
 RUN apt-get -q upgrade -y
@@ -23,7 +24,6 @@ ADD influxdb.ini /etc/statsite/
 EXPOSE 8125
 
 WORKDIR /src
-RUN apt-get -q install -y nginx
 RUN curl -O http://grafanarel.s3.amazonaws.com/grafana-1.8.1.tar.gz
 RUN tar -xvzf grafana-1.8.1.tar.gz
 
