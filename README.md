@@ -11,16 +11,19 @@ TCP works too, but the server needs to be up, and you are waiting for answer.
 For this docker tool, [statsite](https://github.com/armon/statsite) is used.
 Statsite is a C variant of statsd, a nodejs project.
 
-Storage are handled by [Influxdb](http://influxdb.com/).
 Graphic are handled by [Grafana](http://grafana.org).
+Storage are handled by [Influxdb](http://influxdb.com/) or [Graphite-api](http://graphite-api.readthedocs.org)
+
 
 Testing it
 ----------
 You need [Docker](https://docker.com) with a recent kernel, or a [boot2docker](http://boot2docker.io) if you are not using Linux.
 
 
-    docker build -t timeseries .
-    docker run -p 8080:80 -p 8125:8125 -p 8083:8083 -p 8086:8086 timeseries
+### Influxdb version
+
+    docker build -t timeseries influxdb
+    docker run -p 8080:80 -p 8125:8125/udp -p 8083:8083 -p 8086:8086 timeseries
 
 Ports:
 
@@ -30,6 +33,19 @@ Ports:
  * 8086: Influxdb API
 
 The password are dummies : admin/admin for using the _timeseries_ db in Influxdb, root/root for administrating Influxdb.
+
+### Graphite-api version
+
+    docker build -t graphite-api graphite-api
+    docker run -p 8080:80 -p 8125:8125/udp graphite-api
+
+Ports:
+
+ * 80: Grafana
+ * 8125: Statsite
+
+Using it
+--------
 
 Just push some data to the port 8125 and watch what happens in Grafana.
 You can push data with netcat, or using a libraray designed for your favorite language.
