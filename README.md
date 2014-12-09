@@ -23,7 +23,7 @@ You need [Docker](https://docker.com) with a recent kernel, or a [boot2docker](h
 ### Influxdb version
 
     docker build -t timeseries influxdb
-    docker run -p 8080:80 -p 8125:8125/udp -p 8083:8083 -p 8086:8086 timeseries
+    docker run -p 8080:80 -p 8125:8125/udp -p 8125:8125 -p 8083:8083 -p 8086:8086 timeseries
 
 Ports:
 
@@ -37,12 +37,13 @@ The password are dummies : admin/admin for using the _timeseries_ db in Influxdb
 ### Graphite-api version
 
     docker build -t graphite-api graphite-api
-    docker run -p 8080:80 -p 8125:8125/udp graphite-api
+    docker run -p 8080:80 -p 8125:8125/udp -p 8125:8125 -p 2003:2003 graphite-api
 
 Ports:
 
  * 80: Grafana
  * 8125: Statsite
+ * 2003: Carbon
 
 Using it
 --------
