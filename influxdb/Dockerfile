@@ -3,13 +3,21 @@ MAINTAINER mlecarme@bearstech.com
 
 RUN apt-get -q update
 RUN apt-get -q upgrade -y
-RUN apt-get -q install -y curl git scons gcc make nginx
+RUN apt-get -q install -y git scons gcc make nginx curl
+RUN mkdir -p /src
 WORKDIR /src
 
-RUN curl -O http://s3.amazonaws.com/influxdb/influxdb_latest_amd64.deb
+ADD http://s3.amazonaws.com/influxdb/influxdb_latest_amd64.deb /src/
 RUN dpkg -i influxdb_latest_amd64.deb
 EXPOSE 8083
 EXPOSE 8086
+
+ADD http://grafanarel.s3.amazonaws.com/grafana-1.8.1.tar.gz /src/
+RUN tar -xvzf grafana-1.8.1.tar.gz
+
+RUN mkdir -p /var/www
+RUN cp -r grafana-1.8.1/* /var/www/
+ADD config.js /var/www/
 
 RUN git clone https://github.com/armon/statsite.git
 WORKDIR /src/statsite
@@ -22,14 +30,6 @@ RUN mkdir -p /etc/statsite/
 ADD statsite.ini /etc/statsite/
 ADD influxdb.ini /etc/statsite/
 EXPOSE 8125
-
-WORKDIR /src
-RUN curl -O http://grafanarel.s3.amazonaws.com/grafana-1.8.1.tar.gz
-RUN tar -xvzf grafana-1.8.1.tar.gz
-
-RUN mkdir -p /var/www
-RUN cp -r grafana-1.8.1/* /var/www/
-ADD config.js /var/www/
 
 ADD start.sh /
 RUN chmod +x /start.sh
