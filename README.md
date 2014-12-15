@@ -37,6 +37,7 @@ The password are dummies : admin/admin for using the _timeseries_ db in Influxdb
 #### Using influxdb-cli
 
 You have to create a database from the influxdb website (port 8083).
+Set the database name with a ENV, in this example, the "db" name is used, choose your own.
 
     docker build -t influxdb-cli influxdb-cli
     docker run -ti --link=influxdb:db -e DB=db influxdb-cli
