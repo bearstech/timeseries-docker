@@ -34,6 +34,13 @@ Ports:
 
 The password are dummies : admin/admin for using the _timeseries_ db in Influxdb, root/root for administrating Influxdb.
 
+#### Using influxdb-cli
+
+You have to create a database from the influxdb website (port 8083).
+
+    docker build -t influxdb-cli influxdb-cli
+    docker run -ti --link=influxdb:db -e DB=db influxdb-cli
+
 ### Graphite-api version
 
     docker build -t graphite-api graphite-api
