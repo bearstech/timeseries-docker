@@ -1,11 +1,8 @@
 FROM debian:jessie
 MAINTAINER mlecarme@bearstech.com
 
-RUN apt-get -q update
-RUN apt-get -q upgrade -y
+RUN apt-get -q update && apt-get install -y pypy libcairo2 curl
 
-RUN apt-get install -y pypy libcairo2
-
-ADD https://bootstrap.pypa.io/get-pip.py /tmp/
-RUN pypy /tmp/get-pip.py
+WORKDIR /src
+RUN curl https://bootstrap.pypa.io/get-pip.py | pypy
 RUN pip install graphite-api gunicorn
