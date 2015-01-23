@@ -23,7 +23,7 @@ You need [Docker](https://docker.com) with a recent kernel, or a [boot2docker](h
 ### Influxdb version
 
     docker build -t timeseries influxdb
-    docker run -p 8080:80 -p 8125:8125/udp -p 8125:8125 -p 8083:8083 -p 8086:8086 timeseries
+    docker run --name=influxdb -p 8080:80 -p 8125:8125/udp -p 8125:8125 -p 8083:8083 -p 8086:8086 timeseries
 
 Ports:
 
