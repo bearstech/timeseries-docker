@@ -1,11 +1,10 @@
 FROM debian:wheezy
 MAINTAINER mlecarme@bearstech.com
 
-RUN apt-get -q update
-RUN apt-get -q upgrade -y
-ADD http://nodejs.org/dist/v0.10.33/node-v0.10.33-linux-x64.tar.gz /opt/
+RUN apt-get update && apt-get install -y curl
+ENV NODE_VERSION=0.10.35
 WORKDIR /opt
-RUN tar -xvzf node*.gz
-RUN ln -s /opt/node-v0.10.33-linux-x64/bin/* /usr/local/bin
+RUN curl http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz | tar -xz
+RUN ln -s /opt/node-v$NODE_VERSION-linux-x64/bin/* /usr/local/bin
 RUN npm install influxdb-cli -g
 CMD influxdb-cli --pretty -h db -d $DB
