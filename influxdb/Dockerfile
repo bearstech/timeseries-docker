@@ -11,7 +11,7 @@ RUN dpkg -i influxdb_latest_amd64.deb
 EXPOSE 8083
 EXPOSE 8086
 
-ENV GRAFANA_VERSION=1.8.1
+ENV GRAFANA_VERSION=1.9.1
 
 RUN curl http://grafanarel.s3.amazonaws.com/grafana-$GRAFANA_VERSION.tar.gz | tar -xz
 
