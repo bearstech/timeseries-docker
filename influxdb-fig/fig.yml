@@ -1,0 +1,4 @@
+influxdb:
+    build: influxdb
+    volumes:
+        - "./data/db:/opt/influxdb/shared/data/"
