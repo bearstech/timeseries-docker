@@ -1,4 +1,12 @@
+---
 influxdb:
     build: influxdb
     volumes:
         - "./data/db:/opt/influxdb/shared/data/"
+
+grafana:
+    build: grafana
+    ports:
+        - 80
+    links:
+        - influxdb
