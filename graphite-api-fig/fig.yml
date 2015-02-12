@@ -5,3 +5,10 @@ carbon:
         - 2003
     volumes:
         - "./data/carbon:/opt/graphite/storage"
+
+graphiteapi:
+    build: graphite-api
+    volumes_from:
+        - carbon
+    ports:
+        - 8888
