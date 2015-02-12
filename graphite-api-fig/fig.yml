@@ -1,0 +1,7 @@
+---
+carbon:
+    build: carbon
+    ports:
+        - 2003
+    volumes:
+        - "./data/carbon:/opt/graphite/storage"
