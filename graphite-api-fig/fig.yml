@@ -1,6 +1,7 @@
 ---
 carbon:
     build: carbon
+    hostname: carbon
     ports:
         - 2003
     volumes:
