@@ -8,12 +8,12 @@ RUN mkdir -p /opt/graphite && virtualenv /opt/graphite
 WORKDIR /opt/graphite
 RUN /opt/graphite/bin/pip install 'twisted<=11' \
     https://github.com/graphite-project/ceres/tarball/master whisper carbon
-#RUN /opt/carbon/bin/pip install whisper
-#RUN /opt/carbon/bin/pip install carbon
 COPY carbon.conf /opt/graphite/conf/
 COPY storage-schemas.conf /opt/graphite/conf/
 COPY storage-aggregation.conf /opt/graphite/conf/storage-aggregation.conf
+COPY docker-entrypoint.sh /entrypoint.sh
 
 EXPOSE 2003
 VOLUME /opt/graphite/storage
-CMD /opt/graphite/bin/carbon-cache.py start --debug
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/opt/graphite/bin/carbon-cache.py", "start", "--debug"]
