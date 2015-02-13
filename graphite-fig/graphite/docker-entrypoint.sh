@@ -7,5 +7,6 @@ if [ ! -e /opt/graphite/storage/graphite.db ]; then
 else
     echo "Using old database"
 fi
+mkdir -p /opt/graphite/storage/log/webapp
 
 exec "$@"
