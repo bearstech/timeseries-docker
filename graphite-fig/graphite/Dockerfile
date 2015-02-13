@@ -10,6 +10,8 @@ COPY local_settings.py /opt/graphite/webapp/graphite/
 COPY graphite.wsgi /opt/graphite/webapp/
 
 #ENTRYPOINT /entrypoint.sh
-WORKDIR /opt/graphite/webapp/
+WORKDIR /opt/graphite/webapp/graphite
 
-CMD /opt/graphite/bin/gunicorn --workers 2 graphite.wsgi
+CMD /opt/graphite/bin/python manage.py runserver
+
+#CMD /opt/graphite/bin/gunicorn --workers 2 graphite.wsgi
