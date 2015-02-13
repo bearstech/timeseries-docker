@@ -9,9 +9,9 @@ COPY docker-entrypoint.sh /entrypoint.sh
 COPY local_settings.py /opt/graphite/webapp/graphite/
 COPY graphite.wsgi /opt/graphite/webapp/
 
-#ENTRYPOINT /entrypoint.sh
 WORKDIR /opt/graphite/webapp/graphite
+ENTRYPOINT ["/entrypoint.sh"]
 
-CMD /opt/graphite/bin/python manage.py runserver
+CMD ["/opt/graphite/bin/python", "manage.py", "runserver"]
 
 #CMD /opt/graphite/bin/gunicorn --workers 2 graphite.wsgi
