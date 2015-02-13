@@ -190,6 +190,7 @@ DATABASES = {
     }
 }
 
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 #########################
 # Cluster Configuration #
