@@ -14,3 +14,10 @@ graphite:
         - carbon
     ports:
         - 8888
+
+grafana:
+    build: grafana
+    links:
+        - "graphite"
+    ports:
+        - 80
