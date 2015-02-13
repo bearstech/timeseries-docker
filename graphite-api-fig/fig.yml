@@ -13,3 +13,10 @@ graphiteapi:
         - carbon
     ports:
         - 8888
+
+grafana:
+    build: grafana
+    links:
+        - "graphiteapi:graphite"
+    ports:
+        - 80
