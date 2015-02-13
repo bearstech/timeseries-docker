@@ -12,6 +12,6 @@ COPY graphite.wsgi /opt/graphite/webapp/
 WORKDIR /opt/graphite/webapp/graphite
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["/opt/graphite/bin/python", "manage.py", "runserver"]
+CMD ["/opt/graphite/bin/python", "manage.py", "runserver", "0.0.0.0:8888"]
 
 #CMD /opt/graphite/bin/gunicorn --workers 2 graphite.wsgi
