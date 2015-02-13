@@ -1,0 +1,16 @@
+---
+
+carbon:
+    build: carbon
+    hostname: carbon
+    ports:
+        - 2003
+    volumes:
+        - "./data/carbon:/opt/graphite/storage"
+
+graphite:
+    build: graphite
+    volumes_from:
+        - carbon
+    ports:
+        - 8888
