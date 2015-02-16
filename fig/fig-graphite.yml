@@ -29,3 +29,11 @@ grafanastore:
         - 5000
     volumes:
         - "./data/dashboard:/opt/data"
+
+statsite:
+    build: images/statsite
+    ports:
+        - "8125/udp"
+        - "8125"
+    links:
+        - carbon
