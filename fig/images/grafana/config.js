@@ -42,15 +42,13 @@ function (Settings) {
       graphite: {
         type: 'graphite',
         url: "http://" + document.location.host
-      }//,
-    /*
+      },
       elasticsearch: {
         type: 'elasticsearch',
-        url: "http://my.elastic.server.com:9200",
+        url: "http://" + document.location.host,
         index: 'grafana-dash',
         grafanaDB: true,
       }
-    */
     },
 
     // OpenTSDB & Elasticsearch example setup
