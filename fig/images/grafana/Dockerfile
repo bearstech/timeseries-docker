@@ -15,6 +15,5 @@ COPY config.js /var/www/
 EXPOSE 80
 
 COPY website.conf /etc/nginx/sites-available/default
-RUN ln -s /etc/nginx/sites-available/website.conf /etc/nginx/sites-enabled/
 
 CMD ["nginx"]

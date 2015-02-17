@@ -4,7 +4,7 @@ carbon:
     build: images/carbon
     hostname: carbon
     ports:
-        - 2003
+        - "2003"
     volumes:
         - "./data/carbon:/opt/graphite/storage"
 
@@ -12,8 +12,8 @@ graphite:
     build: images/graphite
     volumes_from:
         - carbon
-    ports:
-        - 8888
+    expose:
+        - "8888"
 
 grafana:
     build: images/grafana
@@ -21,12 +21,12 @@ grafana:
         - graphite
         - grafanastore
     ports:
-        - 80
+        - "8000:80"
 
 grafanastore:
     build: images/grafanastore
-    ports:
-        - 5000
+    expose:
+        - "5000"
     volumes:
         - "./data/dashboard:/opt/data"
 
