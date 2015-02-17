@@ -33,12 +33,15 @@ Docker (local or distant with boot2docker), [fig](http://fig.sh).
 
 Choose your recipe, and taste it.
 
-    fig -f grafana-machin.yml build
-    fig -f grafana-machin.yml up
+    export FIG_FILE=fig-graphite-api.yml
+    fig stop
+    fig rm
+    fig build
+    fig up -d
 
-In an other window, find the mapped port for 80 on grafana container.
+Find the mapped port for 80 on grafana container.
 
-    fig -f grafana-machin.yml ps
+    fig ps
 
 Futur
 -----
