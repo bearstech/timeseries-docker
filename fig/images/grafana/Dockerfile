@@ -11,8 +11,13 @@ ENV GRAFANA_VERSION 1.9.1
 RUN curl http://grafanarel.s3.amazonaws.com/grafana-$GRAFANA_VERSION.tar.gz \
     | tar -xz && mv grafana-$GRAFANA_VERSION /var/www
 COPY config.js /var/www/
+COPY config-influxdb.js /var/www/
 
 EXPOSE 80
+
+COPY docker-entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 COPY website.conf /etc/nginx/sites-available/default
 

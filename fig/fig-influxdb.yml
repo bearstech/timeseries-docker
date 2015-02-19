@@ -1,0 +1,22 @@
+---
+
+influxdb:
+    build: images/influxdb
+    hostname: influxdb
+    ports:
+        - 8083
+        - 8086
+    expose:
+        - 8090
+        - 8099
+    volumes:
+        - "./data/influxdb:/opt/influxdb/shared/data/"
+
+grafana:
+    build: images/grafana
+    links:
+        - influxdb
+    ports:
+        - 80
+    environment:
+        - TIMESERIES=influxdb
