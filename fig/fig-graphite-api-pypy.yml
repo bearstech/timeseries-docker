@@ -17,18 +17,12 @@ graphite:
 
 grafana:
     build: images/grafana
+    volumes:
+        - "./data/grafana:/var/lib/grafana/"
     links:
         - graphite
-        - grafanastore
     ports:
-        - 80
-
-grafanastore:
-    build: images/grafanastore
-    ports:
-        - 5000
-    volumes:
-        - "./data/dashboard:/opt/data"
+        - 3000
 
 statsite:
     build: images/statsite
