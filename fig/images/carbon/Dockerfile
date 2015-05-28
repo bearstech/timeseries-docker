@@ -1,19 +1,12 @@
-FROM debian:wheezy
+FROM debian:jessie
 MAINTAINER mlecarme@bearstech.com
 
-RUN apt-get update && apt-get install -y python-dev python-virtualenv
+RUN apt-get update && apt-get install -y graphite-carbon
 
-RUN mkdir -p /opt/graphite && virtualenv /opt/graphite
-
-WORKDIR /opt/graphite
-RUN /opt/graphite/bin/pip install 'twisted<=11' \
-    https://github.com/graphite-project/ceres/tarball/master whisper carbon
-COPY carbon.conf /opt/graphite/conf/
-COPY storage-schemas.conf /opt/graphite/conf/
-COPY storage-aggregation.conf /opt/graphite/conf/storage-aggregation.conf
-COPY docker-entrypoint.sh /entrypoint.sh
+COPY carbon.conf /etc/carbon/
+COPY storage-schemas.conf /etc/carbon/
+COPY storage-aggregation.conf /etc/carbon/storage-aggregation.conf
 
 EXPOSE 2003
-VOLUME /opt/graphite/storage
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/opt/graphite/bin/carbon-cache.py", "start", "--debug"]
+VOLUME /var/lib/graphite/whisper/
+CMD ["/usr/bin/carbon-cache", "--config=/etc/carbon/carbon.conf", "--pidfile=/tmp/carbon-cache.pid", "--debug", "start"]

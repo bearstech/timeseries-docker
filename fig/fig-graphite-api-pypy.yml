@@ -6,7 +6,7 @@ carbon:
     ports:
         - 2003
     volumes:
-        - "./data/carbon:/opt/graphite/storage"
+        - "./data/carbon:/var/lib/graphite/whisper/"
 
 graphite:
     build: images/graphite-api-pypy
