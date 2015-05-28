@@ -1,7 +1,7 @@
-FROM debian:wheezy
+FROM debian:jessie
 MAINTAINER mlecarme@bearstech.com
 
-ENV STATSITE_VERSION 0.7.0
+ENV STATSITE_VERSION 0.7.1
 
 RUN apt-get update && apt-get install -y curl scons gcc make
 
