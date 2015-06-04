@@ -1,5 +1,5 @@
-Timeseries, with a little help from fig
-=======================================
+Timeseries, with a little help from Compose
+===========================================
 
 You can compose your timeseries stack.
 
@@ -17,35 +17,24 @@ The cake recipe is :
     |           whisper        |
     +--------------------------+
 
-There is different flavor of graphite :
- * graphite, the original, a Django application
- * graphite-api, a bare bone implementation, a Flask application
- * graphite-api-pypy, JIT python variant of graphite-api
+Graphite is implemented by garphite-api + pypy.
 
-The dashboards are stored in grafana-store, a fake elasticsearch, a dummy Flask application.
+Statsd is implemented by statsite.
+
+Carbon is now a debian package.
 
 The Dockerfile are in the images folder.
 
 Use it
 ------
 
-Docker (local or distant with boot2docker), [fig](http://fig.sh).
 
 Choose your recipe, and taste it.
 
-    export FIG_FILE=fig-graphite-api.yml
-    fig stop
-    fig rm
-    fig build
-    fig up -d
+    docker-compose up -d
 
 Find the mapped port for 80 on grafana container.
 
-    fig ps
+    docker-compose ps
 
-Futur
------
-
-Fig will become docker-compose.
-
-Using Influxdb instead of carbon/graphite/whisper.
+Find the grafana mapped port, and open it with a web browser.
